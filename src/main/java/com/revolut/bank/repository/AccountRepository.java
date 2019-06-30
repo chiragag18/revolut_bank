@@ -36,4 +36,11 @@ public class AccountRepository {
         }
         return Optional.empty();
     }
+
+    public Optional<Account> removeAccount(String accountNumber){
+        if(accountMap.containsKey(accountNumber)) {
+            return Optional.ofNullable(accountMap.remove(accountNumber));
+        }
+        return Optional.empty();
+    }
 }
