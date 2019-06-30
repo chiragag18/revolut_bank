@@ -1,0 +1,21 @@
+# Compiled Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+
+build/
+bin/
+out/
+
+
+# IDE specific files #
+*.classpath
+*.project
+*.iml
+/.idea
+/.nb-gradle
+
+
+.gradle/
