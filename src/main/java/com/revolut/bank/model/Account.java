@@ -32,4 +32,5 @@ public class Account {
     public Currency getCurrency() {
         return currency;
     }
+
 }

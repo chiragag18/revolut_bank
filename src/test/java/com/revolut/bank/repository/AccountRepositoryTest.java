@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class AccountRepositoryTest {
 
-    private AccountRepository accountRepository = AccountRepository.getInstance();
+    private AccountRepository accountRepository = AccountRepositoryImpl.getInstance();
 
     private Account account;
 
@@ -35,7 +35,7 @@ public class AccountRepositoryTest {
     @Test
     public void shouldCreateAnAccountWithThousandDollar(){
         Optional<Account> savedAccount =  accountRepository.addAccount(account);
-        Assert.assertEquals(true, savedAccount.isPresent());
+        Assert.assertTrue(savedAccount.isPresent());
     }
 
     @Test
@@ -62,6 +62,12 @@ public class AccountRepositoryTest {
         String accountNumber = UUID.randomUUID().toString();
         Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
         Assert.assertEquals(Optional.empty(), account);
+    }
+
+    @Test
+    public void updateAccountWithInvalidAccountNumberShouldReturnEmpty() {
+        Optional<Account> savedAccount = accountRepository.updateAccount(account);
+        Assert.assertFalse(savedAccount.isPresent());
     }
 
 }

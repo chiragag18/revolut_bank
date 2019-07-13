@@ -2,45 +2,20 @@ package com.revolut.bank.repository;
 
 import com.revolut.bank.model.Account;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 /**
- * Author by chirag.agrawal on date 6/30/2019
+ * Author by chirag.agrawal on date 7/13/2019
  */
 
-public class AccountRepository {
+public interface AccountRepository {
 
-    private AccountRepository() {}
+    Optional<Account> addAccount(Account account);
 
-    private static AccountRepository _SELF = new AccountRepository();
+    Optional<Account> findByAccountNumber(String accountNumber);
 
-    public static AccountRepository getInstance(){
-        return _SELF;
-    }
+    Optional<Account> removeAccount(String accountNumber);
 
-    private Map<String, Account> accountMap = new HashMap<>();
+    Optional<Account> updateAccount(Account account);
 
-    public Optional<Account> addAccount(Account account) {
-        if(!accountMap.containsKey(account.getAccountNumber())) {
-            accountMap.put(account.getAccountNumber(), account);
-            return Optional.ofNullable(accountMap.get(account.getAccountNumber()));
-        }
-        return Optional.empty();
-    }
-
-    public Optional<Account> findByAccountNumber(String accountNumber) {
-        if(accountMap.containsKey(accountNumber)) {
-            return Optional.ofNullable(accountMap.get(accountNumber));
-        }
-        return Optional.empty();
-    }
-
-    public Optional<Account> removeAccount(String accountNumber){
-        if(accountMap.containsKey(accountNumber)) {
-            return Optional.ofNullable(accountMap.remove(accountNumber));
-        }
-        return Optional.empty();
-    }
 }
